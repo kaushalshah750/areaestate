@@ -1,12 +1,12 @@
-<div>
-    <div>
-        <div>
+<div style="background-color: #EFEFF3;">
+    <div class="vh-100 w-100 d-flex align-items-center justify-content-center">
+        <!-- <div class="login-container">
             <div>
-                <h3>Log In your Account</h3>
+                <h5 class="poppins-medium">Log In your Account</h5>
             </div>
             <div>
                 <div>
-                    <label for="email">Email *</label>
+                    <label class="roboto-regular" for="email">Email *</label>
                     <input type="text" name="email">
                 </div>
                 <div>
@@ -15,8 +15,26 @@
                 </div>
             </div>
             <div>
-                <button class="btn">Log In</button>
+                <button class="btn btn-primary">Log In</button>
             </div>
+        </div> -->
+        <div class="login-container">
+            <div class="d-flex justify-content-center mb-4">
+                <h4 class="poppins-medium">Log In your Account</h4>
+            </div>
+            <form >
+                <div class="form-group">
+                  <label for="email" class="poppins-medium">Email Address</label>
+                  <input type="email" class="form-control mt-1" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+
+                <div class="form-group mt-3">
+                  <label for="password" class="poppins-medium">Password</label>
+                  <input type="password" class="form-control mt-1" id="password" placeholder="Password">
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3 poppins-medium w-100 bg-pri">Log In</button>
+              </form>
         </div>
     </div>
 </div>
