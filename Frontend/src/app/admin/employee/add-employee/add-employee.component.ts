@@ -4,9 +4,10 @@ import { Role, RolesResponse } from '../../Models/Role';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-employee',
-  templateUrl: './add-employee.component.html',
-  styleUrls: ['./add-employee.component.scss']
+    selector: 'app-add-employee',
+    templateUrl: './add-employee.component.html',
+    styleUrls: ['./add-employee.component.scss'],
+    standalone: false
 })
 export class AddEmployeeComponent {
   employeeForm!: FormGroup;

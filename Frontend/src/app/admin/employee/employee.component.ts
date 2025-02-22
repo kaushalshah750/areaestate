@@ -4,9 +4,10 @@ import { AddUser } from '../Models/AddUser';
 // import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss']
+    selector: 'app-employee',
+    templateUrl: './employee.component.html',
+    styleUrls: ['./employee.component.scss'],
+    standalone: false
 })
 export class EmployeeComponent {
   displayedColumns: string[] = ['fname', 'lname', 'email', 'phone', 'gender', 'actions'];
