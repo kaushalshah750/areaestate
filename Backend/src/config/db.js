@@ -1,11 +1,23 @@
-import mysql from 'mysql2';
+import { Sequelize } from 'sequelize';
 
-const pool = mysql.createPool({
+// Create a new Sequelize instance
+const sequelize = new Sequelize('areaestate', 'root', 'Kaushal$#@#123', {
     host: '127.0.0.1',
-    user: 'root', //MSI\KAUSHAL
-    password: 'Kaushal$#@#123',
-    database: 'areaaesstate'
-}).promise()
+    dialect: 'mysql',
+    logging: false // Disable logging
+});
+
+// Test Database Connection
+(async () => {
+    try {
+        await sequelize.authenticate();
+        console.log('✅ Database connected successfully!');
+    } catch (error) {
+        console.error('❌ Database connection failed:', error);
+    }
+})();
+
+export default sequelize;
 
 // const pool = mysql.createPool({
 //     host: '127.0.0.1',
@@ -14,4 +26,4 @@ const pool = mysql.createPool({
 //     database: 'UrbanCabs'
 // }).promise()
 
-export default pool;
+

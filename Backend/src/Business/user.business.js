@@ -1,24 +1,39 @@
-import db from '../config/db';
+import sequelize from '../config/db';
+import { QueryTypes } from 'sequelize';
 
-async function getAllUser(){
-    var [users] = await db.query(`SELECT User_id, Name, Email, Phone FROM Users`)
+export async function getAllUser() {
+    const [users] = await sequelize.query(`SELECT Id, First_name, Email, Phone FROM Users`);
     return users;
 }
 
-async function getAllRole(){
-    var [Roles] = await db.query(`SELECT Id, Name FROM Roles`)
-    return Roles;
+export async function getAllRole() {
+    const [roles] = await sequelize.query(`SELECT Id, Name FROM Roles`);
+    return roles;
 }
 
-async function loginUser(body){
-    var [users] = await db.query(`SELECT Username, Password FROM Authentication WHERE Username = ? and Password = ?`, [body.Username, body.Password])
-    return users[0];
+export async function getAllWorkingLocation() {
+    const [working_location] = await sequelize.query(`SELECT Id, Location FROM working_location`);
+    return working_location;
 }
 
-async function createUser(body){
-    console.log(body)
-    // var [users] = await db.query(`SELECT Username, Password FROM Authentication WHERE Username = ? and Password = ?`, [body.Username, body.Password])
-    // return users[0];
+export async function loginUser(body) {
+    const [users] = await sequelize.query(
+        `SELECT Username, Password FROM users WHERE Username = :username`,
+        {
+            replacements: { username: body.Username },
+            type: QueryTypes.SELECT,
+        }
+    );
+    console.log(users)
+    return users ? users : null; // Ensure safe return
 }
 
-module.exports = { getAllUser, loginUser, getAllRole, createUser }
+export async function createUser(body) {
+    const [result] = await sequelize.query(
+        `INSERT INTO Users (First_name, Last_name, Email, Phone, Mobile, Dob, Address) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        [body.First_name, body.Last_name, body.Email, body.Phone, body.Mobile, body.Dob, body.Address]
+    );
+    return { id: result.insertId };
+}
+
+export default { getAllUser, getAllRole, loginUser, createUser, getAllWorkingLocation };

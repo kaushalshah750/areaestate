@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Role, RolesResponse } from '../../Models/Role';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-employee',
@@ -8,26 +9,30 @@ import { Role, RolesResponse } from '../../Models/Role';
   styleUrls: ['./add-employee.component.scss']
 })
 export class AddEmployeeComponent {
-  fname:string = ""
-  lname:string = ""
-  phone:string = ""
-  mobile:string = ""
-  email:string = ""
-  workinglocation:string = ""
-  joiningdate:Date = new Date()
-  role:string = ""
-  roleData:Role[] = []
-  dob:Date = new Date()
-  currentaddress:string = ""
-  permanentaddress:string = ""
-  gender:string = ""
-  reportsto:string = ""
+  employeeForm!: FormGroup;
+  roleData: Role[] = []
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private fb: FormBuilder
   ){}
 
-  ngOnInit(){
+  ngOnInit(): void {
+    this.employeeForm = this.fb.group({
+      fname: ['', Validators.required],
+      lname: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      mobile: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      email: ['', [Validators.required, Validators.email]],
+      gender: ['', Validators.required],
+      joiningdate: ['', Validators.required],
+      role: ['', Validators.required],
+      dob: ['', Validators.required],
+      currentaddress: ['', Validators.required],
+      permanentaddress: ['', Validators.required],
+      workinglocation: ['', Validators.required],
+      reportsto: ['', Validators.required]
+    });
     this.getRoles()
   }
 

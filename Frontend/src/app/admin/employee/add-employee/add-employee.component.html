@@ -1,14 +1,14 @@
 <div class="bg-acc w-100 vh-100">
     <div class="p-4">
-        <form class="bg-white border p-4 br20">
+        <form [formGroup]="employeeForm" class="bg-white border p-4 br20">
             <div class="d-grid grid-1-1-1 gap-10">
                 <div class="form-group mb-3">
                     <label for="fname" class="poppins-medium">First Name</label>
-                    <input type="text" class="form-control mt-1 br20" name="fname" id="fname" [(ngModel)]="fname">
+                    <input type="text" class="form-control mt-1 br20" name="fname" id="fname" formControlName="fname">
                 </div>
                 <div class="form-group mb-3">
                     <label for="lname" class="poppins-medium">Last Name</label>
-                    <input type="text" class="form-control mt-1" name="lname" id="lname" [(ngModel)]="lname">
+                    <input type="text" class="form-control mt-1" name="lname" id="lname" formControlName="lname">
                 </div>
                 <div class="form-group mb-3">
                     <label for="Phone" class="poppins-medium">Phone</label>
@@ -16,7 +16,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text">+91</div>
                         </div>
-                        <input type="text" class="form-control" name="Phone" id="Phone" [(ngModel)]="phone">
+                        <input type="text" class="form-control" name="Phone" id="Phone" formControlName="phone">
                     </div>
                 </div>
                 <div class="form-group">
@@ -25,51 +25,51 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text">+91</div>
                         </div>
-                        <input type="text" class="form-control" name="Mobile" id="Mobile" [(ngModel)]="mobile">
+                        <input type="text" class="form-control" name="Mobile" id="Mobile" formControlName="mobile">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="Email" class="poppins-medium">Email</label>
-                    <input type="text" class="form-control mt-1" name="Email" id="Email" [(ngModel)]="email">
+                    <input type="text" class="form-control mt-1" name="Email" id="Email" formControlName="email">
                 </div>
                 <div class="form-group">
                     <label for="gender" class="poppins-medium">Gender</label>
-                    <select class="custom-select form-control mt-1" name="gender" id="gender" [(ngModel)]="gender">
+                    <select class="custom-select form-control mt-1" name="gender" id="gender" formControlName="gender">
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
                 </div>
                 <div class="form-group my-3">
                     <label for="joiningdate" class="poppins-medium">Joining Date</label>
-                    <input type="date" class="form-control mt-1" name="joiningdate" id="joiningdate" [(ngModel)]="joiningdate">
+                    <input type="date" class="form-control mt-1" name="joiningdate" id="joiningdate" formControlName="joiningdate">
                 </div>
                 <div class="form-group my-3">
                     <label for="role" class="poppins-medium">Role</label>
-                    <select class="form-control mt-1" name="role" id="role" [(ngModel)]="role">
+                    <select class="form-control mt-1" name="role" id="role" formControlName="role">
                         <option value="{{role.Id}}" *ngFor="let role of roleData">{{role.Name}}</option>
                     </select>
                 </div>
                 <div class="form-group my-3">
                     <label for="dob" class="poppins-medium">Date of Birth</label>
-                    <input type="date" class="form-control mt-1" name="dob" id="dob" [(ngModel)]="dob">
+                    <input type="date" class="form-control mt-1" name="dob" id="dob" formControlName="dob">
                 </div>
             </div>
             <div class="form-group my-3">
                 <label for="currentaddress" class="poppins-medium">Current Address</label>
-                <textarea rows="4" class="form-control mt-1" name="currentaddress" id="currentaddress" [(ngModel)]="currentaddress"></textarea>
+                <textarea rows="4" class="form-control mt-1" name="currentaddress" id="currentaddress" formControlName="currentaddress"></textarea>
             </div>
             <div class="form-group my-3">
                 <label for="permanentaddress" class="poppins-medium">Permanent Address</label>
-                <textarea rows="4" class="form-control mt-1" name="permanentaddress" id="permanentaddress" [(ngModel)]="permanentaddress"></textarea>
+                <textarea rows="4" class="form-control mt-1" name="permanentaddress" id="permanentaddress" formControlName="permanentaddress"></textarea>
             </div>
             <div class="d-grid grid-1-1 gap-10">
                 <div class="form-group">
                     <label for="workinglocation" class="poppins-medium">Working Location</label>
-                    <input type="text" class="form-control mt-1" name="workinglocation" id="workinglocation" [(ngModel)]="workinglocation">
+                    <input type="text" class="form-control mt-1" name="workinglocation" id="workinglocation" formControlName="workinglocation">
                 </div>
                 <div class="form-group">
                     <label for="reportsto" class="poppins-medium">Reports To</label>
-                    <input type="text" class="form-control mt-1" name="reportsto" id="reportsto" [(ngModel)]="reportsto">
+                    <input type="text" class="form-control mt-1" name="reportsto" id="reportsto" formControlName="reportsto">
                 </div>
             </div>
             <div>

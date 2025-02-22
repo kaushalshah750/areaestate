@@ -8,17 +8,21 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEmployeeComponent } from './admin/employee/add-employee/add-employee.component';
 import { SidebarComponent } from './admin/shared/sidebar/sidebar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EmployeeComponent } from './admin/employee/employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AddEmployeeComponent,
-    SidebarComponent
+    SidebarComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule
   ],
