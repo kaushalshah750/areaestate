@@ -25,16 +25,16 @@
             <form >
                 <div class="form-group">
                   <label for="email" class="poppins-medium">Email Address</label>
-                  <input type="email" class="form-control mt-1" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                  <input type="text" class="form-control mt-1" name="email" id="email" placeholder="Enter Email" [(ngModel)]="username">
                 </div>
 
                 <div class="form-group mt-3">
                   <label for="password" class="poppins-medium">Password</label>
-                  <input type="password" class="form-control mt-1" id="password" placeholder="Password">
+                  <input type="password" class="form-control mt-1" name="password" id="password" placeholder="Password" [(ngModel)]="password">
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-3 poppins-medium w-100 bg-pri">Log In</button>
-              </form>
+                <button type="submit" class="btn btn-pri mt-3 poppins-medium w-100 bg-pri" (click)="login()">Log In</button>
+            </form>
         </div>
     </div>
 </div>
