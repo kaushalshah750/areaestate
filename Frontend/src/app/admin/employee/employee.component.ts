@@ -1,39 +1,55 @@
 import { Component } from '@angular/core';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { AddUser } from '../Models/AddUser';
-// import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { Users, UsersResponse } from '../Models/User';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
-    selector: 'app-employee',
-    templateUrl: './employee.component.html',
-    styleUrls: ['./employee.component.scss'],
-    standalone: false
+  selector: 'app-employee',
+  templateUrl: './employee.component.html',
+  styleUrls: ['./employee.component.scss'],
+  standalone: false
 })
 export class EmployeeComponent {
   displayedColumns: string[] = ['fname', 'lname', 'email', 'phone', 'gender', 'actions'];
-  dataSource: AddUser[] = [];
+  dataSource: Users[] = [];
 
-  // constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    public userService: UserService
+  ) { }
 
-  // openDialog(user?: AddUser): void {
-  //   const dialogRef = this.dialog.open(AddEmployeeComponent, {
-  //     width: '400px',
-  //     data: user || {}
-  //   });
+  ngOnInit() {
+    this.allUsers()
+  }
 
-  //   dialogRef.afterClosed().subscribe((result:any) => {
-  //     if (result) {
-  //       if (user) {
-  //         const index = this.dataSource.indexOf(user);
-  //         this.dataSource[index] = result;
-  //       } else {
-  //         this.dataSource.push(result);
-  //       }
-  //     }
-  //   });
-  // }
+  openDialog(user?: Users): void {
+    const dialogRef = this.dialog.open(AddEmployeeComponent, {
+      minWidth: '900px',
+      height: 'fit-content',
+      data: user
+    });
 
-  // deleteUser(user: User): void {
-  //   this.dataSource = this.dataSource.filter(u => u !== user);
-  // }
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        if (user) {
+          const index = this.dataSource.indexOf(user);
+          this.dataSource[index] = result;
+        } else {
+          this.dataSource.push(result);
+        }
+      }
+    });
+  }
+
+  allUsers() {
+    this.userService.getAllUsers().subscribe((res: UsersResponse) => {
+      this.dataSource = res.data
+    })
+  }
+
+  deleteUser(user: Users): void {
+    // this.dataSource = this.dataSource.filter(u => u !== user);
+  }
 }

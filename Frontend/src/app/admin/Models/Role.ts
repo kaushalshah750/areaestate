@@ -6,6 +6,6 @@ export interface RolesResponse{
 
 
 export interface Role{
-    Id: string
+    Id: number
     Name: string
 }

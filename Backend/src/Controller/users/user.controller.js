@@ -2,7 +2,7 @@ import userBusiness from '../../Business/user.business';
 import responsedata from '../../Utils/response';
 
 const userController = {
-    getAllUser: async (req, res) => {
+    getAllUser: async(req, res) => {
         try {
             const data = await userBusiness.getAllUser();
             return responsedata(res, false, "", data);
@@ -11,9 +11,8 @@ const userController = {
         }
     },
 
-    loginUser: async (req, res) => {
+    loginUser: async(req, res) => {
         try {
-            console.log(req.body)
             const data = await userBusiness.loginUser(req.body);
             return responsedata(res, false, "", data);
         } catch (err) {
@@ -21,7 +20,7 @@ const userController = {
         }
     },
 
-    getAllRole: async (req, res) => {
+    getAllRole: async(req, res) => {
         try {
             const data = await userBusiness.getAllRole();
             return responsedata(res, false, "", data);
@@ -30,7 +29,7 @@ const userController = {
         }
     },
 
-    getAllWorkingLocation: async (req, res) => {
+    getAllWorkingLocation: async(req, res) => {
         try {
             const data = await userBusiness.getAllWorkingLocation();
             return responsedata(res, false, "", data);
@@ -39,7 +38,7 @@ const userController = {
         }
     },
 
-    createUser: async (req, res) => {
+    createUser: async(req, res) => {
         try {
             const data = await userBusiness.createUser(req.body);
             return responsedata(res, false, "", data);

@@ -1,0 +1,107 @@
+<div class="">
+    <div class="bg-white d-flex" *ngIf="commonService.currentRole.Name == 'Admin'">
+        <div class="px-4 py-2 pointer" (click)="switchSection('All')" [ngClass]="leadSection == 'All' ? 'active' : ''">
+            <h5 class="poppins-regular">All Leads</h5>
+        </div>
+        <div class="px-4 py-2 pointer" (click)="switchSection('My')" [ngClass]="leadSection == 'My' ? 'active' : ''">
+            <h5 class="poppins-regular">My Leads</h5>
+        </div>
+    </div>
+    <hr class="m-0" *ngIf="commonService.currentRole.Name == 'Admin'">
+    <div class="bg-white d-flex">
+        <div class="px-3 py-2 pointer" (click)="switchSubSection('Active')" [ngClass]="leadSubSection == 'Active' ? 'active' : ''">
+            <span class="mb-0 h7 poppins-regular">Active ({{leadCount.ActiveCount}})</span>
+        </div>
+        <div class="px-3 py-2 pointer" (click)="switchSubSection('New')" [ngClass]="leadSubSection == 'New' ? 'active' : ''">
+            <span class="mb-0 h7 poppins-regular">New ({{leadCount.NewCount}})</span>
+        </div>
+        <div class="px-3 py-2 pointer" (click)="switchSubSection('Pending')" [ngClass]="leadSubSection == 'Pending' ? 'active' : ''">
+            <span class="mb-0 h7 poppins-regular">Pending ({{leadCount.PendingCount}})</span>
+        </div>
+        <div class="px-3 py-2 pointer" (click)="switchSubSection('Scheduled')" [ngClass]="leadSubSection == 'Scheduled' ? 'active' : ''">
+            <span class="mb-0 h7 poppins-regular">Scheduled ({{leadCount.ScheduledCount}})</span>
+        </div>
+        <div class="px-3 py-2 pointer" (click)="switchSubSection('Overdue')" [ngClass]="leadSubSection == 'Overdue' ? 'active' : ''">
+            <span class="mb-0 h7 poppins-regular">Overdue ({{leadCount.OverdueCount}})</span>
+        </div>
+        <div class="px-3 py-2 pointer" (click)="switchSubSection('EOI')" [ngClass]="leadSubSection == 'EOI' ? 'active' : ''">
+            <span class="mb-0 h7 poppins-regular">EOI ({{leadCount.EOICount}})</span>
+        </div>
+        <div class="px-3 py-2 pointer" (click)="switchSubSection('Bookings')" [ngClass]="leadSubSection == 'Bookings' ? 'active' : ''">
+            <span class="mb-0 h7 poppins-regular">Bookings ({{leadCount.BookingsCount}})</span>
+        </div>
+        <div class="px-3 py-2 pointer" (click)="switchSubSection('Dropped')" [ngClass]="leadSubSection == 'Dropped' ? 'active' : ''">
+            <span class="mb-0 h7 poppins-regular">Dropped ({{leadCount.DroppedCount}})</span>
+        </div>
+    </div>
+    <!-- <hr class="m-0"> -->
+</div>
+
+<div class="container-fluid mt-3">
+
+    <div class="d-flex justify-content-between">
+        <h4 class="poppins-semibold">Lead List</h4>
+        <button mat-raised-button class="btn btn-primary px-4" color="primary" (click)="openDialog()"><span class="poppins-regular">Add Lead</span></button>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-4">
+        <ng-container matColumnDef="id">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Id </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let lead"> {{lead.Id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Name </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let lead"> {{lead.Name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Email </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let lead"> {{lead.Email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="assignedTo" *ngIf="commonService.currentRole.Name == 'Admin'">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Assigned To </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let lead"> {{ lead.Assignee ? lead.Assignee.First_name + " " + lead.Assignee.Last_name : ''}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Client Status </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let lead"> <span [ngClass]="lead.Status == 'Hot' ? 'red' : lead.Status == 'Warm' ? 'yellow' :  lead.Status == 'New' ? 'success' : ''" class="success">{{lead.Status}}</span> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="callstatus">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Call Status </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let lead"> {{lead.Call_Status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="requirement">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Remark </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let lead"> {{lead.Requirement}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Actions </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let lead">
+                <button mat-icon-button class="btn btn-primary mx-1" color="accent" (click)="openDialog(lead, 'view')">
+                    <span class="material-symbols-outlined d-flex">visibility</span>
+                </button>
+                <button mat-icon-button class="btn btn-primary mx-1" color="accent" (click)="openDialog(lead, 'edit')" *ngIf="commonService.currentRole.Name == 'Admin'">
+                    <span class="material-symbols-outlined d-flex">edit</span>
+                </button>
+                <button mat-icon-button class="btn btn-primary mx-1" color="warn" (click)="deleteLead(lead)" *ngIf="commonService.currentRole.Name == 'Admin'">
+                    <span class="material-symbols-outlined d-flex">delete</span>
+                </button>
+                <button mat-icon-button class="btn btn-primary mx-1" color="warn" (click)="addCallDetails(lead)">
+                    <span class="material-symbols-outlined d-flex">phone</span>
+                </button>
+                <button mat-icon-button class="btn btn-primary mx-1" color="warn" (click)="redirectToWhatsApp(lead)">
+                    <img src="../../../assets/whatsapp.svg" alt="" width="20px">
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

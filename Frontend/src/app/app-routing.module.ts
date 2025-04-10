@@ -1,19 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './admin/auth/login/login.component';
-import { AddEmployeeComponent } from './admin/employee/add-employee/add-employee.component';
+import { EmployeeComponent } from './admin/employee/employee.component';
+import { LeadComponent } from './admin/lead/lead.component';
+import { HomeComponent } from './admin/home/home.component';
 
 const routes: Routes = [
-  {
+  { 
     path: '',
+    redirectTo: 'login',
+    pathMatch: 'full' 
+  },
+  {
+    path: 'login',
     component: LoginComponent
   },
   {
     path: 'admin',
+    component: HomeComponent,
     children: [
       {
-        path: 'employee/add',
-        component: AddEmployeeComponent
+        path: 'employee',
+        component: EmployeeComponent
+      },
+      {
+        path: 'lead',
+        component: LeadComponent
       }
     ]
   }

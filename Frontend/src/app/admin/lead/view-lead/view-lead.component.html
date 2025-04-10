@@ -1,0 +1,29 @@
+<div class="d-flex align-items-center justify-content-between border py-3 px-4">
+    <h5 class="mb-0 poppins-medium">{{leadData.Name}}'s Details</h5>
+    <span class="material-symbols-outlined pointer" (click)="closeOverlay()">close</span>
+</div>
+<div class="py-4 px-4">
+    <div class="d-grid grid-1-1 gap-20">
+        <div class="d-flex align-items-center">
+            <h5 class="poppins-medium mb-0">Name: </h5>
+            <h6 class="px-2 mb-0 poppins-regular">{{leadData.Name}}</h6>
+        </div>
+        <div class="d-flex align-items-center">
+            <h5 class="poppins-medium mb-0">Email: </h5>
+            <h6 class="px-2 mb-0 poppins-regular">{{leadData.Email}}</h6>
+        </div>
+        <div class="d-flex align-items-center">
+            <h5 class="poppins-medium mb-0">Number: </h5>
+            <h6 class="px-2 mb-0 poppins-regular">{{leadData.Number}}</h6>
+        </div>
+        <div class="d-flex align-items-center">
+            <h5 class="poppins-medium mb-0">Requirement: </h5>
+            <h6 class="px-2 mb-0 poppins-regular">{{leadData.Requirement}}</h6>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <h4 class="poppins-medium">Activity</h4>
+    </div>
+    <hr>
+</div>

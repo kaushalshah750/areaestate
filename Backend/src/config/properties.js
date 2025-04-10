@@ -1,4 +1,4 @@
 module.exports = {
-    PORT: 8400,
+    PORT: 8500,
     BaseUrl: "https://localhost:4200/",
 }

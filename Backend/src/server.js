@@ -6,10 +6,12 @@ import indexRoute from './Controller/index.routes'
 import sequelize from './config/db';
 
 import User from './models/user.model';
+import Lead from './models/Lead.model';
+import LeadHistory from './models/lead_history.model';
 import Role from './models/Role.model';
 import WorkingLocation from './models/WorkingLocation.model';
 
-sequelize.sync({ force: false })  // `force: true` will drop existing tables
+sequelize.sync({ force: false }) // `force: true` will drop existing tables
     .then(() => {
         console.log('Database & tables created!');
     })
@@ -18,7 +20,7 @@ sequelize.sync({ force: false })  // `force: true` will drop existing tables
     });
 
 var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(cors())

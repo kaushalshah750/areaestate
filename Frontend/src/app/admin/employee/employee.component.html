@@ -1,47 +1,47 @@
-<!-- <div class="container">
-    <h1>User List</h1>
-    <button mat-raised-button color="primary" (click)="openDialog()">Add User</button>
-  
+<div class="container-fluid mt-3">
+    <div class="d-flex justify-content-between">
+        <h4 class="poppins-semibold">Employee List</h4>
+        <button mat-raised-button class="btn btn-primary px-4" color="primary" (click)="openDialog()"><span class="poppins-regular">Add User</span></button>
+    </div>
+
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-4">
-      <ng-container matColumnDef="fname">
-        <th mat-header-cell *matHeaderCellDef> First Name </th>
-        <td mat-cell *matCellDef="let user"> {{user.fname}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="lname">
-        <th mat-header-cell *matHeaderCellDef> Last Name </th>
-        <td mat-cell *matCellDef="let user"> {{user.lname}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let user"> {{user.email}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef> Phone </th>
-        <td mat-cell *matCellDef="let user"> {{user.phone}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="gender">
-        <th mat-header-cell *matHeaderCellDef> Gender </th>
-        <td mat-cell *matCellDef="let user"> {{user.gender}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let user">
-          <button mat-icon-button color="accent" (click)="openDialog(user)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="deleteUser(user)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <ng-container matColumnDef="fname">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> First Name </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let user"> {{user.First_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lname">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Last Name </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let user"> {{user.Last_name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Email </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let user"> {{user.Email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Phone </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let user"> {{user.Phone}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Gender </th>
+            <td class="poppins-regular" mat-cell *matCellDef="let user"> {{user.Gender}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th class="poppins-regular" mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let user">
+                <button mat-icon-button class="btn btn-primary mx-2" color="accent" (click)="openDialog(user)">
+          <span class="material-symbols-outlined">edit</span>
+        </button>
+                <button mat-icon-button class="btn btn-primary" color="warn" (click)="deleteUser(user)">
+          <span class="material-symbols-outlined">delete</span>
+        </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-  </div>
-   -->
+</div>

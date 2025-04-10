@@ -1,4 +1,21 @@
-.menu-container{
-  background-color: #3E5879 !important;
-  color: #fff !important;
+@import "../../../../theme";
+.open-width {
+    width: 300px !important;
+}
+
+.collapse-width {
+    width: 50px !important;
+}
+
+.sidebar-container {
+    height: calc(100vh - 58px) !important;
+}
+
+.collape-container {
+    width: 33px;
+    background-color: #fff !important;
+}
+
+.collape-container>span {
+    color: $pri-color !important;
 }

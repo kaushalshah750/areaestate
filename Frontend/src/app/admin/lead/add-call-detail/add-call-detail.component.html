@@ -1,0 +1,38 @@
+<div class="d-flex align-items-center justify-content-between border py-3 px-4">
+    <h5 class="mb-0 poppins-medium">Call Details</h5>
+    <span class="material-symbols-outlined pointer" (click)="closeOverlay()">close</span>
+</div>
+<mat-dialog-content class="py-4">
+    <form [formGroup]="leadForm">
+        <div class="d-grid grid-1-1 gap-10">
+            <div class="form-group mb-3">
+                <label for="callstatus" class="poppins-medium">Call Status</label>
+                <select class="custom-select form-control mt-1" name="callstatus" id="callstatus" formControlName="CallStatus" (change)="statusChange()">
+                    <option value="Call Not Answered">Call Not Answered</option>
+                    <option value="Switch Off">Switch Off</option>
+                    <option value="Follow Up">Follow Up</option>
+                    <option value="SV Schedule">SV Schedule</option>
+                    <option value="SV Done">SV Done</option>
+                    <option value="Meeting Schedule">Meeting Schedule</option>
+                    <option value="Meeting Done">Meeting Done</option>
+                    <option value="Drop">Drop</option>
+                </select>
+            </div>
+            <div class="form-group mb-3" *ngIf="leadForm.get('CallStatus')?.value != 'SV Done' || leadForm.get('CallStatus')?.value != 'Meeting Done' || leadForm.get('CallStatus')?.value != 'Drop'">
+                <label for="scheduled" class="poppins-medium">Scheduled</label>
+                <div class="d-flex">
+                    <input type="date" [min]="currentDate" class="form-control mt-1" name="scheduled" id="scheduled" formControlName="ScheduledDate">
+                    <input type="time" class="form-control mt-1" name="scheduled" id="scheduled" formControlName="ScheduledTime">
+                </div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="note" class="poppins-medium">Note</label>
+            <textarea type="text" rows="4" class="form-control mt-1" name="note" id="note" formControlName="Note"></textarea>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions class="border py-2">
+    <button type="submit" class="btn btn-primary poppins-medium px-4" style="margin-right: 10px;" (click)="submit()">Submit</button>
+    <button type="submit" class="btn btn-secondary poppins-medium px-4" cdkFocusInitial [mat-dialog-close]>Cancel</button>
+</mat-dialog-actions>

@@ -1,13 +1,20 @@
-<div>
-    <div class="my-4 text-center">
-        <h2>Area Estate</h2>
-    </div>
-    <div class="menu-container my-3 py-2 px-3 d-flex align-items-center gap-10">
-        <span class="material-symbols-outlined">person</span>
-        <h5>Agents</h5>
-    </div>
-    <div class="menu-container my-3 py-2 px-3 d-flex align-items-center gap-10">
-        <span class="material-symbols-outlined">real_estate_agent</span>
-        <h5>Property</h5>
+<div class="sidebar-container" [class]="isCollapsed ? 'collapse-width' : 'open-width'">
+    <div class="d-flex h-100 justify-content-between flex-column">
+        <div>
+            <div class="menu-container py-3 px-3 d-flex align-items-center pointer gap-10" [routerLink]="['/admin/employee']" routerLinkActive="active" *ngIf="commonService.currentRole.Name == 'Admin'">
+                <span class="material-symbols-outlined text-white">person</span>
+                <h5 class="poppins-regular mb-0 text-white">Employee</h5>
+            </div>
+            <div class="menu-container py-3 px-3 d-flex align-items-center pointer gap-10" [routerLink]="['/admin/lead']" routerLinkActive="active">
+                <span class="material-symbols-outlined text-white">real_estate_agent</span>
+                <h5 class="poppins-regular mb-0 text-white">Lead</h5>
+            </div>
+        </div>
+
+        <div class="w-100 d-flex justify-content-end px-2">
+            <div class="collape-container my-3 br50 d-flex  pointer" (click)="collapse()">
+                <span class="material-symbols-outlined p-1">{{ isCollapsed ? "keyboard_arrow_right" : "keyboard_arrow_left"}}</span>
+            </div>
+        </div>
     </div>
 </div>

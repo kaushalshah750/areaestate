@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Authentication, AuthenticationsResponse } from '../../Models/Authentication';
 import { Router } from '@angular/router';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
     selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private commonService: CommonService,
     private router: Router
   ){}
 
@@ -25,18 +27,39 @@ export class LoginComponent {
 
   login(){
     var auth:Authentication = {
+      Id: 0,
       Username: this.username,
-      Password: this.password
+      Password: this.password,
+      First_name: "",
+      Last_name: "",
+      Role: {
+        Id: 0,
+        Name: ""
+      }
     }
     
-    console.log(this.username)
-    console.log(this.password)
-
     this.authenticationService.login(auth).subscribe((res: AuthenticationsResponse) => {
       if(res.data){
-        this.router.navigate(["/admin/employee/add"])
+        var user = {
+          Id: res.data.Id,
+          Username: res.data.Username,
+          Password: res.data.Password,
+          First_name: res.data.First_name,
+          Last_name: res.data.Last_name,
+        }
+        var role = {
+          Id: res.data.Role.Id,
+          Name: res.data.Role.Name
+        }
+        localStorage.setItem("user", JSON.stringify(user))
+        localStorage.setItem("role", JSON.stringify(role))
+        this.commonService.currentRole = role
+        if(role.Name == "Admin"){
+          this.router.navigate(["/admin/employee"])
+        }else{
+          this.router.navigate(["/admin/lead"])
+        }
       }
-      console.log(res.data)
     })
   }
 

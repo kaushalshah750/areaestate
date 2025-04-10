@@ -1,192 +1,226 @@
 /* You can add global styles to this file, and also import other style files */
 
-.d-flex{
-  display: flex !important;
+@import "theme";
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
 }
 
-.d-grid{
-  display: grid !important;
+.background {
+    background-color: #F5F5F5 !important;
 }
 
-.grid-1-1{
-  grid-template-columns: 1fr 1fr;
+.pointer {
+    cursor: pointer !important;
 }
 
-.grid-1-1-1{
-  grid-template-columns: 1fr 1fr 1fr;
+.d-flex {
+    display: flex !important;
 }
 
-.br10{
-  border-radius: 10px;
+.d-grid {
+    display: grid !important;
 }
 
-.br20{
-  border-radius: 20px;
+.grid-1-1 {
+    grid-template-columns: 1fr 1fr;
 }
 
-.gap-10{
-  gap: 10px;
+.grid-1-1-1 {
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
-.gap-20{
-  gap: 20px;
+.br10 {
+    border-radius: 10px;
+}
+
+.br20 {
+    border-radius: 20px;
+}
+
+.br50 {
+    border-radius: 50px !important;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.gap-20 {
+    gap: 20px;
+}
+
+.active {
+    background-color: #3E5879 !important;
+    color: #fff !important;
 }
 
 // .form-control{
 //   border-radius: 12px !important;
 // }
-
-.text-accent{
-  color: #F5F5F5 !important;
+.text-accent {
+    color: #F5F5F5 !important;
 }
 
-.text-primary{
-  color: #213555 !important;
+.text-primary {
+    color: $pri-color !important;
 }
 
-.text-secondary{
-  color: #3E5879 !important;
+.text-secondary {
+    color: #3E5879 !important;
 }
 
-.bg-acc{
-  background-color: #F5F5F5 !important;
+.bg-acc {
+    background-color: #F5F5F5 !important;
 }
 
-.bg-pri{
-  background-color: #213555 !important;
+.bg-pri {
+    background-color: $pri-color !important;
 }
 
-.bg-sec{
-  background-color: #3E5879 !important;
+// .bg-sec {
+//     background-color: #00000050 !important;
+//     color: #ffffff !important;
+//     border: #00000050 !important;
+//     // background-color: #3E5879 !important;
+// }
+.h7 {
+    font-size: 14px !important;
 }
 
-.btn-pri{
-  border: #213555 !important;
-  color: #fff !important;
-  background-color: #213555 !important;
+.btn-primary {
+    border: $pri-color !important;
+    color: #fff !important;
+    background-color: #3E5879 !important;
+}
+
+.btn-primary:hover {
+    border: $pri-color !important;
+    color: #fff !important;
+    background-color: #45668e !important;
 }
 
 .poppins-thin {
-  font-family: "Poppins", serif;
-  font-weight: 100;
-  font-style: normal;
+    font-family: "Poppins", serif;
+    font-weight: 100;
+    font-style: normal;
 }
 
 .poppins-extralight {
-  font-family: "Poppins", serif;
-  font-weight: 200;
-  font-style: normal;
+    font-family: "Poppins", serif;
+    font-weight: 200;
+    font-style: normal;
 }
 
 .poppins-light {
-  font-family: "Poppins", serif;
-  font-weight: 300;
-  font-style: normal;
+    font-family: "Poppins", serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
 .poppins-regular {
-  font-family: "Poppins", serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .poppins-medium {
-  font-family: "Poppins", serif !important;
-  font-weight: 500 !important;
-  font-style: normal !important;
+    font-family: "Poppins", serif !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
 }
 
 .poppins-semibold {
-  font-family: "Poppins", serif;
-  font-weight: 600;
-  font-style: normal;
+    font-family: "Poppins", serif;
+    font-weight: 600;
+    font-style: normal;
 }
 
 .poppins-bold {
-  font-family: "Poppins", serif;
-  font-weight: 700;
-  font-style: normal;
+    font-family: "Poppins", serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .poppins-extrabold {
-  font-family: "Poppins", serif;
-  font-weight: 800;
-  font-style: normal;
+    font-family: "Poppins", serif;
+    font-weight: 800;
+    font-style: normal;
 }
 
 .poppins-black {
-  font-family: "Poppins", serif;
-  font-weight: 900;
-  font-style: normal;
+    font-family: "Poppins", serif;
+    font-weight: 900;
+    font-style: normal;
 }
+
 .roboto-thin {
-  font-family: "Roboto", serif;
-  font-weight: 100;
-  font-style: normal;
+    font-family: "Roboto", serif;
+    font-weight: 100;
+    font-style: normal;
 }
 
 .roboto-light {
-  font-family: "Roboto", serif;
-  font-weight: 300;
-  font-style: normal;
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
 .roboto-regular {
-  font-family: "Roboto", serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .roboto-medium {
-  font-family: "Roboto", serif;
-  font-weight: 500;
-  font-style: normal;
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .roboto-bold {
-  font-family: "Roboto", serif;
-  font-weight: 700;
-  font-style: normal;
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .roboto-black {
-  font-family: "Roboto", serif;
-  font-weight: 900;
-  font-style: normal;
+    font-family: "Roboto", serif;
+    font-weight: 900;
+    font-style: normal;
 }
 
 .roboto-thin-italic {
-  font-family: "Roboto", serif;
-  font-weight: 100;
-  font-style: italic;
+    font-family: "Roboto", serif;
+    font-weight: 100;
+    font-style: italic;
 }
 
 .roboto-light-italic {
-  font-family: "Roboto", serif;
-  font-weight: 300;
-  font-style: italic;
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: italic;
 }
 
 .roboto-regular-italic {
-  font-family: "Roboto", serif;
-  font-weight: 400;
-  font-style: italic;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: italic;
 }
 
 .roboto-medium-italic {
-  font-family: "Roboto", serif;
-  font-weight: 500;
-  font-style: italic;
+    font-family: "Roboto", serif;
+    font-weight: 500;
+    font-style: italic;
 }
 
 .roboto-bold-italic {
-  font-family: "Roboto", serif;
-  font-weight: 700;
-  font-style: italic;
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-style: italic;
 }
 
 .roboto-black-italic {
-  font-family: "Roboto", serif;
-  font-weight: 900;
-  font-style: italic;
+    font-family: "Roboto", serif;
+    font-weight: 900;
+    font-style: italic;
 }
