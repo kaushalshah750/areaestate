@@ -74,35 +74,37 @@ export class UserService {
       return;
     }
 
-    // Step 2: Insert into `profiles` table using Supabase client
-    const { userData }: any = data.user;
-    console.log(userData);
+    const userData = data.user;
 
-    const { error: insertError } = await supabase.from('profiles').insert({
-      id: userData.id, // 👈 important: this links `auth.users` to your `profiles` table
-      username: user.Username,
-      first_name: user.First_name,
-      last_name: user.Last_name,
-      email: user.Email,
-      phone: user.Phone,
-      mobile: user.Mobile,
-      joining_date: user.Joining_date,
-      role_id: parseInt(user.Role_id),
-      dob: user.Dob,
-      gender: user.Gender,
-      current_address: user.Current_Address,
-      permanent_address: user.Permanent_Address,
-      reports_to: user.Reports_to || null,
-      created_on: new Date().toISOString(),
-      updated_on: new Date().toISOString(),
-      last_login: new Date().toISOString()
-    });
+    if (userData) {
 
-    if (insertError) {
-      console.error("Profile insert error:", insertError.message);
+      const { error: insertError } = await supabase.from('profiles').insert({
+        id: userData.id,
+        username: user.Username,
+        first_name: user.First_name,
+        last_name: user.Last_name,
+        email: user.Email,
+        phone: user.Phone,
+        mobile: user.Mobile,
+        joining_date: user.Joining_date,
+        role_id: parseInt(user.Role_id),
+        working_location_id: parseInt(user.Working_location),
+        dob: user.Dob,
+        gender: user.Gender,
+        current_address: user.Current_Address,
+        permanent_address: user.Permanent_Address,
+        reports_to: user.Reports_to || null,
+        created_on: new Date().toISOString(),
+        updated_on: new Date().toISOString(),
+        last_login: new Date().toISOString()
+      });
+
+      if (insertError) {
+        console.error("Profile insert error:", insertError.message);
+      }
+      return true;
     }
-
-    return true;
+    return false;
 
   }
 }

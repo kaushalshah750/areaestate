@@ -184,5 +184,5 @@
 
 <mat-dialog-actions class="flex items-center justify-end gap-3 px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg">
     <button type="button" class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium px-4 py-2 rounded-md transition duration-200" cdkFocusInitial [mat-dialog-close]>Cancel</button>
-    <button type="submit" class="bg-sky-800 hover:bg-sky-700 text-white font-medium px-6 py-2 rounded-md shadow-sm transition duration-200" [disabled]="employeeForm.invalid" [ngClass]="{'opacity-50 cursor-not-allowed': employeeForm.invalid}" (click)="submit()">Submit</button>
+    <button type="submit" class="bg-sky-800 hover:bg-sky-700 text-white font-medium px-6 py-2 rounded-md shadow-sm transition duration-200" [disabled]="employeeForm.invalid" [ngClass]="{'opacity-50 cursor-not-allowed': employeeForm.invalid}" (click)="submit()">{{data ? "Update" : "Create"}}</button>
 </mat-dialog-actions>
