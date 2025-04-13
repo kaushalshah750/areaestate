@@ -29,16 +29,11 @@ export class LoginComponent {
       password: this.password,
     })
 
-    console.log(data)
-    console.log(error)
-    console.log(error?.message)
-
     if (error?.message == "Invalid login credentials") {
       this.invalid = true
     }
 
     if (data.session) {
-      console.log(data.session)
       localStorage.setItem("sb-lcprulruuufucyvthzxx-auth-token", JSON.stringify(data?.session))
       this.router.navigate(["/admin/employee"])
     }

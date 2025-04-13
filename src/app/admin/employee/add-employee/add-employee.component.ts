@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Role } from '../../Models/Role';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogClose } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogClose, MatDialogRef } from '@angular/material/dialog';
 import { WorkingLocation } from '../../Models/WorkingLocation';
 import { Employee } from '../../Models/Employee';
 import { DatePipe } from '@angular/common';
@@ -17,11 +17,12 @@ export class AddEmployeeComponent {
   employeeForm!: FormGroup;
   roleData: Role[] = []
   workingLocationData: WorkingLocation[] = []
+  employeeDetail: Employee[] = []
 
   constructor(
     private datePipe: DatePipe,
     private userService: UserService,
-    private dialogue: MatDialog,
+    private dialogRef: MatDialogRef<AddEmployeeComponent>,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: Employee
   ) { }
@@ -29,10 +30,9 @@ export class AddEmployeeComponent {
   ngOnInit(): void {
     var joiningDateFormatted = this.datePipe.transform(this.data?.joining_date || new Date(), 'yyyy-MM-dd');
     var dobFormatted = this.datePipe.transform(this.data?.dob, 'yyyy-MM-dd');
-    console.log(joiningDateFormatted);
-    console.log(dobFormatted);
 
     this.employeeForm = this.fb.group({
+      Id: [this.data?.id || ''],
       Username: [this.data?.username || '', Validators.required],
       Password: ['', Validators.required],
       First_name: [this.data?.first_name || '', Validators.required],
@@ -50,12 +50,14 @@ export class AddEmployeeComponent {
       Reports_to: this.data?.reports_to || 0
     });
 
-    console.log(this.employeeForm.get('Joining_date')?.value);
     if (this.data) {
       this.employeeForm.get('Username')?.disable();
+      this.employeeForm.get('Password')?.clearValidators();
     }
+
     this.getRoles();
     this.getAllWorkingLocation();
+    this.getEmployeeList();
   }
 
   async getRoles() {
@@ -80,17 +82,31 @@ export class AddEmployeeComponent {
     }
   }
 
+  async getEmployeeList() {
+    const { data, error } = await this.userService.getEmployeeList(this.data?.id || "");
+    if (error) {
+      console.error('Error fetching user:', error);
+    } else {
+      this.employeeDetail = data.map((employee: any) => ({
+        ...employee,
+      }));
+    }
+  }
+
   async submit() {
     if (this.employeeForm.controls['Reports_to'].value == 0) {
       this.employeeForm.controls['Reports_to'].setValue(null)
     }
 
-    console.log(this.employeeForm.value);
-
     if (this.employeeForm.valid) {
-      const result = await this.userService.createUser(this.employeeForm.value);
+      let result: boolean;
+      if (this.data) {
+        result = await this.userService.updateUser(this.employeeForm.value);
+      } else {
+        result = await this.userService.createUser(this.employeeForm.value);
+      }
       if (result) {
-        this.dialogue.closeAll();
+        this.dialogRef.close(true);
       } else {
         console.error("Error creating user");
       }
@@ -98,6 +114,6 @@ export class AddEmployeeComponent {
   }
 
   closeOverlay() {
-    this.dialogue.closeAll()
+    this.dialogRef.close(false);
   }
 }

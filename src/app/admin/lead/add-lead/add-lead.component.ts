@@ -49,8 +49,6 @@ export class AddLeadComponent {
   }
 
   submit() {
-    console.log(this.leadForm.value)
-    console.log(this.leadForm)
     if (this.leadForm.valid) {
       if (this.data) {
         this.leadService.updateLead(this.leadForm.value).subscribe((res: boolean) => {

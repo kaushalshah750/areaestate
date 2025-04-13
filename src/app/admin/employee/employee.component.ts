@@ -32,12 +32,7 @@ export class EmployeeComponent {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-        if (user) {
-          const index = this.employeeDetail.indexOf(user);
-          this.employeeDetail[index] = result;
-        } else {
-          this.employeeDetail.push(result);
-        }
+        this.allUsers();
       }
     });
   }

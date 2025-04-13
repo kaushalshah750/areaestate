@@ -12,24 +12,30 @@ import { supabase } from 'src/integration/client';
 export class UserService {
   url = 'rest/v1/profiles'
 
-  constructor(
-    private authHttp: AuthService
-  ) { }
-
   async getAllUsers() {
     return await supabase
       .from('profiles')
       .select(`
-          *,
-          roles:role_id (
-            id,
-            name
-          ),
-          working_location:working_location_id (
-            id,
-            location
-          )
-        `);
+        *,
+        roles:role_id (
+          id,
+          name
+        ),
+        working_location:working_location_id (
+          id,
+          location
+        )
+      `)
+      .order('first_name', { ascending: true });
+
+  }
+
+  async getEmployeeList(id: string) {
+    return await supabase
+      .from('profiles')
+      .select(`id, first_name, last_name`)
+      .neq('id', id)
+      .order('first_name', { ascending: true });
 
   }
 
@@ -62,8 +68,39 @@ export class UserService {
       .eq('id', id);
   }
 
-  async createUser(user: any) {
+  async updateUser(user: any) {
+    const { data, error } = await supabase.from('profiles')
+      .update({
+        id: user.Id,
+        username: user.Username,
+        first_name: user.First_name,
+        last_name: user.Last_name,
+        email: user.Email,
+        phone: user.Phone,
+        mobile: user.Mobile,
+        joining_date: user.Joining_date,
+        role_id: parseInt(user.Role_id),
+        working_location_id: parseInt(user.Working_location),
+        dob: user.Dob,
+        gender: user.Gender,
+        current_address: user.Current_Address,
+        permanent_address: user.Permanent_Address,
+        reports_to: user.Reports_to || null,
+        updated_on: new Date().toISOString(),
+        last_login: new Date().toISOString()
+      })
+      .eq('id', user.Id)
+      .select();
 
+    if (error) {
+      console.error("Update error:", error.message);
+      return false;
+    }
+
+    return true;
+  }
+
+  async createUser(user: any) {
     const { data, error } = await supabase.auth.signUp({
       email: user.Email,
       password: user.Password,
@@ -71,7 +108,7 @@ export class UserService {
 
     if (error) {
       console.error("Signup error:", error.message);
-      return;
+      return false;
     }
 
     const userData = data.user;
