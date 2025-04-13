@@ -1,0 +1,36 @@
+<div class="d-flex align-items-center justify-content-between border py-3 px-4">
+    <h5 class="mb-0 poppins-medium">{{data ? "Update" : "Add"}} Lead</h5>
+    <span class="material-symbols-outlined pointer" (click)="closeOverlay()">close</span>
+</div>
+<mat-dialog-content class="py-4">
+    <form [formGroup]="leadForm">
+        <div class="d-grid grid-1-1 gap-10">
+            <div class="form-group mb-3">
+                <label for="name" class="poppins-medium">Name</label>
+                <input type="text" class="form-control mt-1 br20" name="name" id="name" formControlName="Name">
+            </div>
+            <div class="form-group mb-3">
+                <label for="email" class="poppins-medium">Email</label>
+                <input type="text" class="form-control mt-1" name="email" id="email" formControlName="Email">
+            </div>
+            <div class="form-group mb-3">
+                <label for="number" class="poppins-medium">Number</label>
+                <input type="text" class="form-control mt-1" name="number" id="number" formControlName="Number">
+            </div>
+            <div class="form-group mb-3">
+                <label for="requirement" class="poppins-medium">Remark</label>
+                <input type="text" class="form-control mt-1" name="requirement" id="requirement" formControlName="Requirement">
+            </div>
+            <!-- <div class="form-group mb-3" *ngIf="commonService.currentRole.Name == 'Admin'">
+                <label for="AssignTo" class="poppins-medium">Assign To</label>
+                <select class="custom-select form-control mt-1" name="AssignTo" id="AssignTo" formControlName="Assign_to">
+                    <option *ngFor="let user of users" [value]="user.Id">{{user.First_name}} {{user.Last_name}}</option>
+                </select>
+            </div> -->
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions class="border py-2">
+    <button type="submit" class="btn btn-primary poppins-medium px-4" style="margin-right: 10px;" (click)="submit()">{{data ? "Update" : "Create"}}</button>
+    <button type="submit" class="btn btn-secondary poppins-medium px-4" cdkFocusInitial [mat-dialog-close]>Cancel</button>
+</mat-dialog-actions>

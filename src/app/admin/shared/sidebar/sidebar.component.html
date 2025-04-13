@@ -1,0 +1,85 @@
+<!-- <div class="sidebar-container" [class]="isCollapsed ? 'collapse-width' : 'open-width'">
+    <div class="flex h-100 justify-content-between flex-column">
+        <div class="w-100">
+            <div class="menu-container py-3 px-3 d-flex align-items-center w-100 pointer gap-10 bg-sky-900" [routerLink]="['/admin/employee']" routerLinkActive="active">
+                <span class="material-symbols-outlined text-white">person</span>
+                <h5 class="poppins-regular mb-0 text-white">Employee</h5>
+            </div>
+            <div class="menu-container py-3 px-3 d-flex align-items-center w-100 pointer gap-10 bg-sky-900" [routerLink]="['/admin/lead']" routerLinkActive="active">
+                <span class="material-symbols-outlined text-white">real_estate_agent</span>
+                <h5 class="poppins-regular mb-0 text-white">Lead</h5>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="h-screen bg-slate-800 border-r border-slate-700 shadow-lg transition-all duration-300 flex flex-col" [ngClass]="isCollapsed ? 'w-20' : 'w-64'">
+    <!-- Logo Section -->
+    <div class="px-4 py-6 border-b border-slate-700">
+        <div class="flex items-center justify-center" *ngIf="isCollapsed">
+            <div class="text-xl font-bold text-white">PE</div>
+        </div>
+        <div class="flex items-center" *ngIf="!isCollapsed">
+            <div class="text-2xl font-bold text-white">PropElite</div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="flex-grow py-4 overflow-y-auto">
+        <!-- <div class="px-4 pb-2">
+            <p class="text-xs uppercase tracking-wider text-slate-400" [ngClass]="{'opacity-0': isCollapsed}">Main Navigation</p>
+        </div> -->
+
+        <!-- Dashboard (added as most professional apps have a dashboard) -->
+        <div class="flex items-center px-4 py-3 my-1 mx-2 cursor-pointer rounded-md hover:bg-slate-700 transition-colors duration-200" [routerLink]="['/admin/dashboard']" routerLinkActive="bg-slate-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+        </svg>
+            <span class="ml-3 text-slate-300 font-medium whitespace-nowrap" [ngClass]="{'opacity-0 hidden': isCollapsed}">Dashboard</span>
+        </div>
+
+        <!-- Employee Menu Item -->
+        <div class="flex items-center px-4 py-3 my-1 mx-2 cursor-pointer rounded-md hover:bg-slate-700 transition-colors duration-200" [routerLink]="['/admin/employee']" routerLinkActive="bg-slate-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+            <span class="ml-3 text-slate-300 font-medium whitespace-nowrap" [ngClass]="{'opacity-0 hidden': isCollapsed}">Employees</span>
+        </div>
+
+        <!-- Lead Menu Item -->
+        <div class="flex items-center px-4 py-3 my-1 mx-2 cursor-pointer rounded-md hover:bg-slate-700 transition-colors duration-200" [routerLink]="['/admin/lead']" routerLinkActive="bg-slate-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+            <span class="ml-3 text-slate-300 font-medium whitespace-nowrap" [ngClass]="{'opacity-0 hidden': isCollapsed}">Properties</span>
+        </div>
+
+        <!-- Properties Menu Item (Added for completeness) -->
+        <div class="flex items-center px-4 py-3 my-1 mx-2 cursor-pointer rounded-md hover:bg-slate-700 transition-colors duration-200" [routerLink]="['/admin/properties']" routerLinkActive="bg-slate-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+            <span class="ml-3 text-slate-300 font-medium whitespace-nowrap" [ngClass]="{'opacity-0 hidden': isCollapsed}">Listings</span>
+        </div>
+
+
+        <!-- Settings Menu Item -->
+        <div class="flex items-center px-4 py-3 my-1 mx-2 cursor-pointer rounded-md hover:bg-slate-700 transition-colors duration-200" [routerLink]="['/admin/settings']" routerLinkActive="bg-slate-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+            <span class="ml-3 text-slate-300 font-medium whitespace-nowrap" [ngClass]="{'opacity-0 hidden': isCollapsed}">Settings</span>
+        </div>
+    </div>
+
+    <!-- Toggle Button -->
+    <div class="border-t border-slate-700 p-4">
+        <button class="flex items-center justify-center w-full p-2 rounded-md bg-slate-700 hover:bg-slate-600 transition-colors duration-200" (click)="collapse()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-300 transition-transform duration-300" [ngClass]="{'rotate-180': !isCollapsed}" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+        <span class="ml-2 text-slate-300 text-sm font-medium" [ngClass]="{'hidden': isCollapsed}">Collapse</span>
+      </button>
+    </div>
+</div>

@@ -1,0 +1,188 @@
+<div class="flex items-center justify-between border-b border-gray-200 py-4 px-6 bg-gradient-to-r from-sky-700 to-sky-900">
+    <h5 class="mb-0 text-lg font-medium text-white">{{data ? "Update" : "Add"}} Employee</h5>
+    <span class="material-symbols-outlined text-white cursor-pointer hover:text-gray-200 transition-colors" (click)="closeOverlay()">close</span>
+</div>
+
+<mat-dialog-content class="p-6 max-h-[70vh] overflow-y-auto">
+    <form [formGroup]="employeeForm">
+        <!-- Personal Information Section -->
+        <div class="mb-6">
+            <h3 class="text-lg font-medium text-sky-900 mb-4 pb-2 border-b border-gray-200">Personal Information</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="form-group">
+                    <label for="fname" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                    <input type="text" class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('First_name')?.invalid && (employeeForm.get('First_name')?.dirty || employeeForm.get('First_name')?.touched)}"
+                        name="fname" id="fname" formControlName="First_name">
+                    <div *ngIf="employeeForm.get('First_name')?.invalid && (employeeForm.get('First_name')?.dirty || employeeForm.get('First_name')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('First_name')?.errors?.['required']">First name is required</span>
+                        <span *ngIf="employeeForm.get('First_name')?.errors?.['minlength']">First name must be at least 2 characters</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lname" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                    <input type="text" class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Last_name')?.invalid && (employeeForm.get('Last_name')?.dirty || employeeForm.get('Last_name')?.touched)}"
+                        name="lname" id="lname" formControlName="Last_name">
+                    <div *ngIf="employeeForm.get('Last_name')?.invalid && (employeeForm.get('Last_name')?.dirty || employeeForm.get('Last_name')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Last_name')?.errors?.['required']">Last name is required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                    <input type="text" class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Username')?.invalid && (employeeForm.get('Username')?.dirty || employeeForm.get('Username')?.touched)}"
+                        name="Username" id="Username" formControlName="Username">
+                    <div *ngIf="employeeForm.get('Username')?.invalid && (employeeForm.get('Username')?.dirty || employeeForm.get('Username')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Username')?.errors?.['required']">Username is required</span>
+                        <span *ngIf="employeeForm.get('Username')?.errors?.['minlength']">Username must be at least 3 characters</span>
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="!data">
+                    <label for="Password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <div class="relative">
+                        <input type="password" class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Password')?.invalid && (employeeForm.get('Password')?.dirty || employeeForm.get('Password')?.touched)}"
+                            name="Password" id="Password" formControlName="Password">
+                    </div>
+                    <div *ngIf="employeeForm.get('Password')?.invalid && (employeeForm.get('Password')?.dirty || employeeForm.get('Password')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Password')?.errors?.['required']">Password is required</span>
+                        <span *ngIf="employeeForm.get('Password')?.errors?.['minlength']">Password must be at least 6 characters</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Email')?.invalid && (employeeForm.get('Email')?.dirty || employeeForm.get('Email')?.touched)}"
+                        name="Email" id="Email" formControlName="Email">
+                    <div *ngIf="employeeForm.get('Email')?.invalid && (employeeForm.get('Email')?.dirty || employeeForm.get('Email')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Email')?.errors?.['required']">Email is required</span>
+                        <span *ngIf="employeeForm.get('Email')?.errors?.['email']">Please enter a valid email address</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gender" class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                    <select class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Gender')?.invalid && (employeeForm.get('Gender')?.dirty || employeeForm.get('Gender')?.touched)}"
+                        name="gender" id="gender" formControlName="Gender">
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <div *ngIf="employeeForm.get('Gender')?.invalid && (employeeForm.get('Gender')?.dirty || employeeForm.get('Gender')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Gender')?.errors?.['required']">Gender is required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information Section -->
+        <div class="mb-6">
+            <h3 class="text-lg font-medium text-sky-900 mb-4 pb-2 border-b border-gray-200">Contact Information</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="form-group">
+                    <label for="Phone" class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                    <div class="flex">
+                        <span class="inline-flex items-center px-3 text-gray-700 bg-gray-100 border border-r-0 border-gray-300 rounded-l-md">
+                            +91
+                        </span>
+                        <input type="text" class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-r-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Phone')?.invalid && (employeeForm.get('Phone')?.dirty || employeeForm.get('Phone')?.touched)}"
+                            name="Phone" id="Phone" formControlName="Phone">
+                    </div>
+                    <div *ngIf="employeeForm.get('Phone')?.invalid && (employeeForm.get('Phone')?.dirty || employeeForm.get('Phone')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Phone')?.errors?.['required']">Phone number is required</span>
+                        <span *ngIf="employeeForm.get('Phone')?.errors?.['pattern']">Enter a valid phone number</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Mobile" class="block text-sm font-medium text-gray-700 mb-1">Mobile</label>
+                    <div class="flex">
+                        <span class="inline-flex items-center px-3 text-gray-700 bg-gray-100 border border-r-0 border-gray-300 rounded-l-md">
+                            +91
+                        </span>
+                        <input type="text" class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-r-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Mobile')?.invalid && (employeeForm.get('Mobile')?.dirty || employeeForm.get('Mobile')?.touched)}"
+                            name="Mobile" id="Mobile" formControlName="Mobile">
+                    </div>
+                    <div *ngIf="employeeForm.get('Mobile')?.invalid && (employeeForm.get('Mobile')?.dirty || employeeForm.get('Mobile')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Mobile')?.errors?.['pattern']">Enter a valid mobile number</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Work Information Section -->
+        <div class="mb-6">
+            <h3 class="text-lg font-medium text-sky-900 mb-4 pb-2 border-b border-gray-200">Work Information</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="form-group">
+                    <label for="joiningdate" class="block text-sm font-medium text-gray-700 mb-1">Joining Date</label>
+                    <input type="date" class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Joining_date')?.invalid && (employeeForm.get('Joining_date')?.dirty || employeeForm.get('Joining_date')?.touched)}"
+                        name="joiningdate" id="joiningdate" formControlName="Joining_date">
+                    <div *ngIf="employeeForm.get('Joining_date')?.invalid && (employeeForm.get('Joining_date')?.dirty || employeeForm.get('Joining_date')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Joining_date')?.errors?.['required']">Joining date is required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="role" class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                    <select class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Role_id')?.invalid && (employeeForm.get('Role_id')?.dirty || employeeForm.get('Role_id')?.touched)}"
+                        name="role" id="role" formControlName="Role_id">
+                        <option value="">Select Role</option>
+                        <option value="{{role.id}}" *ngFor="let role of roleData">{{role.name}}</option>
+                    </select>
+                    <div *ngIf="employeeForm.get('Role_id')?.invalid && (employeeForm.get('Role_id')?.dirty || employeeForm.get('Role_id')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Role_id')?.errors?.['required']">Role is required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dob" class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+                    <input type="date" class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Dob')?.invalid && (employeeForm.get('Dob')?.dirty || employeeForm.get('Dob')?.touched)}"
+                        name="dob" id="dob" formControlName="Dob">
+                    <div *ngIf="employeeForm.get('Dob')?.invalid && (employeeForm.get('Dob')?.dirty || employeeForm.get('Dob')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Dob')?.errors?.['required']">Date of birth is required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="workinglocation" class="block text-sm font-medium text-gray-700 mb-1">Working Location</label>
+                    <select class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Working_location')?.invalid && (employeeForm.get('Working_location')?.dirty || employeeForm.get('Working_location')?.touched)}"
+                        name="workinglocation" id="workinglocation" formControlName="Working_location">
+                        <option value="">Select Location</option>
+                        <option value="{{workingLocation.id}}" *ngFor="let workingLocation of workingLocationData">{{workingLocation.location}}</option>
+                    </select>
+                    <div *ngIf="employeeForm.get('Working_location')?.invalid && (employeeForm.get('Working_location')?.dirty || employeeForm.get('Working_location')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Working_location')?.errors?.['required']">Working location is required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reportsto" class="block text-sm font-medium text-gray-700 mb-1">Reports To</label>
+                    <input type="text" class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Reports_to')?.invalid && (employeeForm.get('Reports_to')?.dirty || employeeForm.get('Reports_to')?.touched)}"
+                        name="reportsto" id="reportsto" formControlName="Reports_to">
+                    <div *ngIf="employeeForm.get('Reports_to')?.invalid && (employeeForm.get('Reports_to')?.dirty || employeeForm.get('Reports_to')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Reports_to')?.errors?.['required']">Reports to field is required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Address Information Section -->
+        <div>
+            <h3 class="text-lg font-medium text-sky-900 mb-4 pb-2 border-b border-gray-200">Address Information</h3>
+            <div class="space-y-4">
+                <div class="form-group">
+                    <label for="currentaddress" class="block text-sm font-medium text-gray-700 mb-1">Current Address</label>
+                    <textarea rows="3" class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Current_Address')?.invalid && (employeeForm.get('Current_Address')?.dirty || employeeForm.get('Current_Address')?.touched)}"
+                        name="currentaddress" id="currentaddress" formControlName="Current_Address"></textarea>
+                    <div *ngIf="employeeForm.get('Current_Address')?.invalid && (employeeForm.get('Current_Address')?.dirty || employeeForm.get('Current_Address')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Current_Address')?.errors?.['required']">Current address is required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="permanentaddress" class="block text-sm font-medium text-gray-700 mb-1">Permanent Address</label>
+                    <textarea rows="3" class="shadow-sm border border-gray-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none transition duration-200" [ngClass]="{'border-red-500': employeeForm.get('Permanent_Address')?.invalid && (employeeForm.get('Permanent_Address')?.dirty || employeeForm.get('Permanent_Address')?.touched)}"
+                        name="permanentaddress" id="permanentaddress" formControlName="Permanent_Address"></textarea>
+                    <div *ngIf="employeeForm.get('Permanent_Address')?.invalid && (employeeForm.get('Permanent_Address')?.dirty || employeeForm.get('Permanent_Address')?.touched)" class="text-red-500 text-xs mt-1">
+                        <span *ngIf="employeeForm.get('Permanent_Address')?.errors?.['required']">Permanent address is required</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="flex items-center justify-end gap-3 px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg">
+    <button type="button" class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium px-4 py-2 rounded-md transition duration-200" cdkFocusInitial [mat-dialog-close]>Cancel</button>
+    <button type="submit" class="bg-sky-800 hover:bg-sky-700 text-white font-medium px-6 py-2 rounded-md shadow-sm transition duration-200" [disabled]="employeeForm.invalid" [ngClass]="{'opacity-50 cursor-not-allowed': employeeForm.invalid}" (click)="submit()">Submit</button>
+</mat-dialog-actions>
