@@ -36,7 +36,11 @@ export class UserService {
       .select(`id, first_name, last_name`)
       .neq('id', id)
       .order('first_name', { ascending: true });
+  }
 
+  async getCurrentUser() {
+    const { data: { user } } = await supabase.auth.getUser()
+    return user;
   }
 
   async getAllRole() {

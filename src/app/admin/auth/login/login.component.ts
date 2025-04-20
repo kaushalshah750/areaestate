@@ -68,4 +68,25 @@ export class LoginComponent {
     // })
   }
 
+  checkAuthEvent() {
+    supabase.auth.onAuthStateChange((event, session) => {
+      console.log("checkAuthEvent")
+      console.log(event)
+      if (event === 'SIGNED_OUT') {
+
+        // console.log('SIGNED_OUT', session)
+        // clear local and session storage
+        [
+          window.localStorage,
+          window.sessionStorage,
+        ].forEach((storage) => {
+          Object.entries(storage)
+            .forEach(([key]) => {
+              storage.removeItem(key)
+            })
+        })
+      }
+    })
+  }
+
 }
